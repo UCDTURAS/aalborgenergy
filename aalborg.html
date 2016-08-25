@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Sidebar Transitions</title>
+		<meta name="description" content="Sidebar Transitions: Transition effects for off-canvas views" />
+		<meta name="keywords" content="transition, off-canvas, navigation, effect, 3d, css3, smooth" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/icons.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+          <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.12/themes/css/cartodb.css" />
+   		<script src="js/modernizr.custom.js"></script>
+      
+
+    
+	</head>
+    <style>
+
+.modalWindow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 99999;
+    opacity:0;
+    pointer-events: none;
+    text-align:center;
+}
+.modalWindow:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalWindow > div {
+    width: 500px;
+    position: relative;
+    margin: 10% auto;
+    background: #fff;
+}
+
+	</style>
+    
+	<body>
+    
+
+		<div id="st-container" class="st-container">
+			<!-- 	
+				example menus 
+				these menus will be on top of the push wrapper
+			-->
+			
+
+		
+		
+
+
+		
+
+			<!-- content push wrapper -->
+			<div class="st-pusher">
+				<!-- 	
+					example menus 
+					these menus will be under the push wrapper
+				-->
+                   
+                              
+      
+     
+				
+				         <nav class="st-menu st-effect-3" id="menu-3">
+					<h2 class="icon icon-lab">Aalborg</h2>
+					<ul>
+						<li><a class="icon icon-data" href="index.html">TRADITIONAL</a></li>
+						<li><a class="icon icon-location" href="aalborg.html">HEAT MAPS</a></li>
+						<li><a href="#openModal">ABOUT</a></li>
+					</ul>
+				</nav>
+	
+
+
+<div id="openModal" class="modalWindow" style="background-color:#999;"  tabindex="-1" role="dialog">
+	<div style="background-color:#999;">
+		<a href="#close" title="Close"  style="color:#0F0;"   class="close">Close</a>
+		
+		 <form class="form-horizontal" style="background-color:#666" name="commentsform" method="post" action="" align="center">
+ <img src="aalborgmodal-02.png" height="100%" width="100%">
+     </form>
+</div>
+
+</div>
+
+
+				<div class="st-content"><!-- this is the wrapper for the content -->
+					<div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+						<!-- Top Navigation -->
+						
+						
+						<div align="center" style="height:100px;background-color:#FFF;">                    
+      
+      <img src="http://www.factest.ie/aalborg/logo.png" alt="Future Analytics" align="center"/>
+		</div>						<div class="main clearfix" style="margin-left:-200px;margin-top:-40px;">
+							<div id="st-trigger-effects" class="column" >
+							
+								<button data-effect="st-effect-3" >Main Menu</button>
+				
+
+							</div>
+                   
+
+                   
+						
+
+                   
+						
+							
+						</div><!-- /main -->
+                  
+					</div><!-- /st-content-inner -->
+                  
+                                    <div id="map" style="height:80%;margin-top:-200px;"></div>    
+                 <script src="http://libs.cartocdn.com/cartodb.js/v3/3.12/cartodb.js"></script>
+
+    <script>
+      function main() {
+        cartodb.createVis('map', 'https://priyankasingh125.cartodb.com/api/v2/viz/de5c1f5c-df8d-11e4-b871-0e49835281d6/viz.json', {
+            shareable: true,
+            title: true,
+            description: true,
+            search: true,
+            tiles_loader: true,
+            center_lat: 57.048823231880874,
+            center_lon: 9.921729192137718,
+            zoom: 12
+        })
+        .done(function(vis, layers) {
+          // layer 0 is the base layer, layer 1 is cartodb layer
+          // setInteraction is disabled by default
+          layers[1].setInteraction(true);
+          layers[1].on('featureOver', function(e, latlng, pos, data) {
+            cartodb.log.log(e, latlng, pos, data);
+          });
+          // you can get the native map to work with it
+          var map = vis.getNativeMap();
+          // now, perform any operations you need
+          // map.setZoom(3);
+          // map.panTo([50.5, 30.5]);
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+      }
+      window.onload = main;
+    </script>
+				</div><!-- /st-content -->
+                  
+			</div><!-- /st-pusher -->
+          
+    <!-- include cartodb.js library -->
+   
+		</div><!-- /st-container -->
+        			  
+		<script src="js/classie.js"></script>
+		<script src="js/sidebarEffects.js"></script>
+	</body>
+</html>
